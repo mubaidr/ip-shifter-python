@@ -98,6 +98,11 @@ def prepare_ip_range(start_ip, end_ip):
     return ip_range
 
 
-def signal_handler(signal, frame):
-    print('Bye Bye!')
-    exit()
+def reset_nic(index):
+    ''' Reset network adapter to use DHCP'''
+
+    nic_configs = get_nic_list()
+    nic = nic_configs[index]
+
+    # Enable DHCP
+    nic.EnableDHCP()

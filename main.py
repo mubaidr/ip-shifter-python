@@ -7,7 +7,17 @@ SCHEDULER = __import__('scheduler')
 # Import utility functions
 UTILITIES = __import__('util')
 
-signal.signal(signal.SIGINT, UTILITIES.signal_handler)
+
+def signal_handler(signal, frame):
+    ''' Handles the program exit '''
+
+    global SELECTED_NIC
+    UTILITIES.reset_nic(SELECTED_NIC)
+    print('Bye Bye!')
+    exit()
+
+
+signal.signal(signal.SIGINT, signal_handler)
 
 if shell.IsUserAnAdmin() != True:
     print('\nI hate non-admin users! (-_- )\n')
