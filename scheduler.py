@@ -1,6 +1,5 @@
 ''' IP scheduler '''
 
-import signal
 import sys
 import time
 
@@ -36,4 +35,4 @@ def set_ip_address(nic_index, ip_address, cfg):
         nic.SetGateways(DefaultIPGateway=[cfg['gateway']])
     except:
         print('Doh... Some unexpected error occured!')
-        exit()
+        sys.exit(0)

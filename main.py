@@ -1,5 +1,6 @@
 ''' IP Changer Module '''
 
+import sys
 import signal
 from win32com.shell import shell
 # Import scheduler functions
@@ -14,14 +15,14 @@ def signal_handler(signal, frame):
     global SELECTED_NIC
     UTILITIES.reset_nic(SELECTED_NIC)
     print('Bye Bye!')
-    exit()
+    sys.exit(0)
 
 
 signal.signal(signal.SIGINT, signal_handler)
 
 if shell.IsUserAnAdmin() != True:
     print('\nI hate non-admin users! (-_- )\n')
-    exit()
+    sys.exit(0)
 else:
     # Welcome message
     print('\nHello!\n')

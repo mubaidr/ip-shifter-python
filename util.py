@@ -1,5 +1,6 @@
 ''' Utility functions '''
 
+import sys
 import os
 import json
 import urllib.request
@@ -15,7 +16,7 @@ def get_config():
             return json.load(json_data)
     except FileNotFoundError:
         print('\nNo valid config found, please provide the required information. \n\n')
-        exit()
+        sys.exit(0)
 
 
 def get_nic_input(configs):
