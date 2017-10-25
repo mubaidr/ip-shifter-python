@@ -10,17 +10,23 @@ UTILITIES = __import__('util')
 def start(nic_index):
     ''' Starting the IP shifting... '''
 
+    counter = 0
     config = UTILITIES.get_config()
     ip_list = UTILITIES.prepare_ip_range(
         config['ip']['start'], config['ip']['end'])
 
-    for ip_address in ip_list:
+    while True:
+        ip_address = ip_list[counter]
         set_ip_address(nic_index, ip_address, config)
         print('IP Address: {}\n'.format(ip_address))
         time.sleep(config['timeout'])
         if UTILITIES.is_connected():
             print('Connection seems good, waiting... \n')
             time.sleep(config['delay'])
+
+        counter += 1
+        if counter == len(ip_list):
+            counter = 0
 
 
 def set_ip_address(nic_index, ip_address, cfg):
