@@ -2,9 +2,15 @@
 
 Command line IP Shifter. Changes IP address from the given address every x seconds.
 
+## Requirement
+
+Python 3 or above is required.
+
+`pypiwin32` && `wmi` packages must be installed: `pip install pypiwin32 wmi`
+
 ## How to use
 
-Update config file according to your needs and run `main.py`
+Update config file according to your needs and run using cmd `python main.py`
 
 ## Options
 
