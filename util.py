@@ -22,19 +22,22 @@ def get_config():
 def get_nic_input(configs):
     ''' Get NIC input from user and prints the name of the same'''
 
-    selected_nic = None
-    print('\nPlease select an NIC adapter: \n')
-    while selected_nic is None:
-        try:
-            selected_nic = int(input()) - 1
-        except ValueError:
-            print(
-                'Invalid input, please enter an integer between 1-{0}'.format(len(configs)))
-            selected_nic = None
-        if selected_nic < 0 or selected_nic > len(configs):
-            print(
-                'Invalid input, please enter an integer between 1-{0}'.format(len(configs)))
-            selected_nic = None
+    if len(configs) == 1:
+        selected_nic = 0
+    else:
+        selected_nic = None
+        print('\nPlease select an NIC adapter: \n')
+        while selected_nic is None:
+            try:
+                selected_nic = int(input()) - 1
+            except ValueError:
+                print(
+                    'Invalid input, please enter an integer between 1-{0}'.format(len(configs)))
+                selected_nic = None
+            if selected_nic < 0 or selected_nic > len(configs):
+                print(
+                    'Invalid input, please enter an integer between 1-{0}'.format(len(configs)))
+                selected_nic = None
 
     print_nic_name(configs[selected_nic])
     return selected_nic

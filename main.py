@@ -17,7 +17,6 @@ def signal_handler(signal, frame):
     print('Bye Bye!')
     sys.exit(0)
 
-
 signal.signal(signal.SIGINT, signal_handler)
 
 if shell.IsUserAnAdmin() != True:
@@ -29,13 +28,14 @@ else:
     print('   ;')
     print('  /_\\')
     print('\\(o.o)')
-    print('  ) (\\')
+    print(' `) (`\\')
     print('  / \\\n\n')
 
     # Collect system NICs
     NIC_CONFIGS = UTILITIES.get_nic_list()
     # Print system NICs
-    UTILITIES.print_nic_list(NIC_CONFIGS)
+    if len(NIC_CONFIGS) == 1:
+        UTILITIES.print_nic_list(NIC_CONFIGS)
     # Get target NIC from user
     SELECTED_NIC = UTILITIES.get_nic_input(NIC_CONFIGS)
     # start the process
