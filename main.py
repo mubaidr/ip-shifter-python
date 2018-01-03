@@ -34,9 +34,12 @@ else:
     # Collect system NICs
     NIC_CONFIGS = UTILITIES.get_nic_list()
     # Print system NICs
-    if len(NIC_CONFIGS) == 1:
+    if len(NIC_CONFIGS) > 1:
         UTILITIES.print_nic_list(NIC_CONFIGS)
-    # Get target NIC from user
-    SELECTED_NIC = UTILITIES.get_nic_input(NIC_CONFIGS)
+        # Get target NIC from user
+        SELECTED_NIC = UTILITIES.get_nic_input(NIC_CONFIGS)
+    else:
+        SELECTED_NIC = 0
+
     # start the process
     SCHEDULER.start(SELECTED_NIC)
